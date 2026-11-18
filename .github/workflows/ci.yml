@@ -1,0 +1,49 @@
+# Runs the tests on every push and pull request. A tag vX.Y.Z also builds the
+# package and publishes it on PyPI, with a trusted publisher (no token): see
+# https://docs.pypi.org/trusted-publishers/
+name: CI
+
+on:
+  push:
+    branches: [main]
+    tags: ["v*"]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+      # Libraries of Qt and OpenGL, for the napari viewer of the tests
+      - uses: tlambert03/setup-qt-libs@v1
+      - name: Install
+        run: uv sync --extra all --extra testing
+      # Weights of the networks (MAMBO server, then deepinv's through torch.hub)
+      - uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cache/deepblur
+            ~/.cache/torch
+          key: weights-${{ hashFiles('src/deepblur_napari/_weights.py') }}
+      - name: Test
+        uses: aganders3/headless-gui@v2
+        with:
+          run: uv run pytest -v --color=yes
+
+  publish:
+    needs: test
+    if: startsWith(github.ref, 'refs/tags/v')
+    runs-on: ubuntu-latest
+    environment: pypi
+    permissions:
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # setuptools_scm reads the version from the tag
+      - uses: astral-sh/setup-uv@v6
+      - name: Build
+        run: uv build
+      - uses: pypa/gh-action-pypi-publish@release/v1

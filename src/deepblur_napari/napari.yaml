@@ -1,0 +1,20 @@
+name: deepblur_napari
+display_name: DeepBlur
+visibility: public
+categories: ["Acquisition", "Image Processing", "Measurement"]
+
+metadata:
+  version: 0.1.0
+  license: BSD-3-Clause
+  author: Minh-Hai Nguyen, Florian Sarron, Pierre Weiss
+  email: nguyenhai7120qh@gmail.com, florian.sarron@irit.fr, pierre.weiss@cnrs.fr
+
+contributions:
+  commands:
+    - id: deepblur_napari.deepblur_widget
+      python_name: deepblur_napari._widget:DeepBlurWidget
+      title: Deep Blur PSF Identification
+
+  widgets:
+    - command: deepblur_napari.deepblur_widget
+      display_name: Deep Blur
