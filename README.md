@@ -105,6 +105,10 @@ If you find this plugin useful for your research, please cite :
 Blind spatially varying PSF estimation for fluorescence microscopy
 Minh Hai Nguyen, Florian Sarron, Paul Escande, Sylvain Cantaloube, Thomas Mangeat and Pierre Weiss
 
+## The main contributors to this plugin are 
+
+Minh Hai Nguyen, Florian Sarron, Paul Escande, Pierre Weiss
+
 ## Issues
 
 If you encounter any problems, please [file an issue] along with a detailed
