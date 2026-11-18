@@ -14,9 +14,19 @@ the EE50, of the FWHM and of the cut-off frequency.
 
 ## Usage
 
-Open the plugin with Plugins > DeepBlur > Deep Blur, or with
-`napari -w deepblur_napari`. It opens with demo images: add yours by drag
-and drop. The **Help** button of the plugin explains every setting.
+Open the plugin with Plugins > DeepBlur > DeepBlur, or with
+`napari -w deepblur_napari`. 
+
+You can drag&drop images, then open the plugin to treat them. 
+An alternative is to just launch the plugin and demo images will be displayed. 
+You can still add yours by drag&drop.
+The **Help** button of the plugin explains the main features.
+
+The main processing pipeline is:
+- 1/ add your image
+- 2/ estimate the operator
+- 3/ estimate the noise
+- 4/ deblur
 
 1. **Images**: DeepBlur processes 2D grayscale and RGB images. Each image
    added to napari joins the *Active Image* menu.
@@ -76,8 +86,7 @@ an editor. With pip, run `pip install -e ".[all]"` in a new environment, or
 
 ### Weights
 
-The networks download their weights on first use from the MAMBO server
-(https://mambo-utoulouse.fr/weights), or from the Hugging Face hub
+The networks download their weights on first use from the MAMBO server, or from the Hugging Face hub
 (`mhnguyen712/deepblur`) if the server is unreachable. They are cached in
 `~/.cache/deepblur/weights`. You can change the server and the cache folder
 with the environment variables `DEEPBLUR_WEIGHTS_URL` and `DEEPBLUR_CACHE`.
