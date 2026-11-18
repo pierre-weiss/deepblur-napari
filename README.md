@@ -98,6 +98,13 @@ checkout (the version comes from the tag) and publishes it on PyPI.
 Distributed under the terms of the [BSD-3] license, deepblur-napari is free
 and open source software.
 
+## Acknowledging this work
+
+If you find this plugin useful for your research, please cite : 
+
+Blind spatially varying PSF estimation for fluorescence microscopy
+Minh Hai Nguyen, Florian Sarron, Paul Escande, Sylvain Cantaloube, Thomas Mangeat and Pierre Weiss
+
 ## Issues
 
 If you encounter any problems, please [file an issue] along with a detailed
